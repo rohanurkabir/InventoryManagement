@@ -16,16 +16,6 @@ calls that API over the network using `fetch()`.
 4. To confirm the backend + database are working on their own, visit:
    **http://localhost:3000/api/health**
 
-## What happens automatically
-
-- First run: a real database file is created at `db/rinaz.db`, seeded with
-  6 users, 3 stores, and 12 sarees with starting stock — exactly the same
-  data as before, just now stored for real.
-- Every run after that: your data (sales, transfers, new users, stock
-  changes) is already saved in that file and picks up right where you
-  left off — even after closing the server or restarting your computer.
-- To start completely fresh: delete `db/rinaz.db` (and any `-shm`/`-wal`
-  files next to it) and run `npm start` again.
 
 ## Login accounts (same as before)
 
@@ -65,33 +55,7 @@ backend/
     ├── warehouse.js          → Warehouse Manager dashboard
     ├── shopManager.js        → Shop Manager dashboard
     └── pos.js                → POS Cashier dashboard
-```
 
-## What changed from the LocalStorage version (for your defense)
-
-| | Old (LocalStorage) | Now (real backend) |
-|---|---|---|
-| Where data lives | Browser only | Real file: `db/rinaz.db` (SQLite) |
-| Survives closing the browser | ❌ No | ✅ Yes |
-| Multiple devices/computers | ❌ No | ✅ Yes (if run on a shared network) |
-| Who calculates prices/totals | The browser (JS in `pos.js`) | **The server** (`db/queries.js`) — the browser never decides the final price or stock count |
-| Stock transfers / sales | Two separate JS steps that could get out of sync | **Atomic SQL transactions** — either the whole thing happens or none of it does |
-| Passwords | Plain text in browser storage | Plain text in a real DB table (see note below) |
-
-## Known simplifications (be ready for these questions in your defense)
-
-- **Passwords are stored in plain text**, same as before — for a real
-  company system, passwords would be hashed (e.g. with `bcrypt`) before
-  ever being saved, so not even the developer could read them back.
-- **No login tokens (JWT/sessions)** — the browser just remembers who's
-  logged in via a client-side flag, and every API request trusts the
-  username the browser sends. A production system would issue a signed
-  token at login and verify it on every request, so a request can't be
-  faked by just changing a username in the browser.
-- These are reasonable, explainable simplifications for an academic
-  practicum — the important architecture (real database, real API,
-  server-side validation of stock/prices, atomic transactions) is genuinely
-  production-style.
 
 ## Testing performed
 
