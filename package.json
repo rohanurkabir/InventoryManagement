@@ -1,0 +1,18 @@
+{
+  "name": "rinaz-inventory-backend",
+  "version": "1.0.0",
+  "description": "Rinaz Inventory & Retail Management System — Express + SQLite backend",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "better-sqlite3": "^13.0.3",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "jsdom": "^30.0.1"
+  }
+}

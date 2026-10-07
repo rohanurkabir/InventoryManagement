@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rinaz Inventory System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- LOGIN PAGE -->
+  <div id="loginScreen" class="login-page">
+    <div class="login-card">
+      <div class="brand-mark">R</div>
+      <h1>Rinaz</h1>
+      <p class="tagline">Saree Inventory & Retail System</p>
+      <p class="uni-line">IUBAT Practicum Project</p>
+      <p id="studentLine" class="student-line"></p>
+
+      <form id="loginForm">
+        <div class="field">
+          <label for="loginUsername">Username</label>
+          <input type="text" id="loginUsername" required placeholder="owner">
+        </div>
+        <div class="field">
+          <label for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" required placeholder="••••••••">
+        </div>
+        <p id="loginError" class="error-text"></p>
+        <button type="submit" class="btn btn-main">Log In</button>
+      </form>
+
+      <p class="demo-title">Quick demo login</p>
+      <div id="demoAccounts" class="demo-grid"></div>
+    </div>
+  </div>
+
+  <!-- AFTER LOGIN: header + dashboard -->
+  <div id="appShell" class="hidden">
+    <header id="appHeader" class="app-header theme-owner">
+      <div class="header-left">
+        <h1>Rinaz</h1>
+        <p id="topBarSubtitle"></p>
+        <p id="topBarClock"></p>
+      </div>
+      <div class="header-right">
+        <span id="topBarUser" class="user-pill"></span>
+        <button id="logoutBtn" class="logout-btn">Log Out</button>
+      </div>
+    </header>
+    <main id="dashboardContent" class="page"></main>
+    <footer class="app-footer">
+      <span id="footerText"></span>
+    </footer>
+  </div>
+
+  <!-- JS load order: config → api → ui helpers → each role screen → login -->
+  <script src="config.js"></script>
+  <script src="api.js"></script>
+  <script src="ui.js"></script>
+  <script src="warehouse.js"></script>
+  <script src="pos.js"></script>
+  <script src="owner.js"></script>
+  <script src="shopManager.js"></script>
+  <script src="auth.js"></script>
+</body>
+</html>
